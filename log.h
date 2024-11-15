@@ -24,7 +24,6 @@ FILE* open_file_edit();
 void close_file(FILE *file);
 
 
-
 //Update the file log.txt with the history of the board acoording with the plays until the end of the game
 void edit_history(HISTORY info_plays, int nlin, int nCol);
 

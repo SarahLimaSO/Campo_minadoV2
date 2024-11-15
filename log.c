@@ -32,50 +32,70 @@ void close_file(FILE *file){
     fclose(file);
 }
 
-// //Update the file log.txt with the history of the board acoording with the plays until the end of the game
-// void edit_history(HISTORY info_plays, int nlin, int nCol){
+//Aloca a matriz da struct que recebe o tabuleiro
+void aloca_mat_hist(HISTORY *info_plays, int nlin, int nCol){
 
-//     FILE* input = open_file_edit();
+    info_plays->mat = (char**)malloc(nlin*sizeof(char*));
 
-//     //Identifying the positions of the columns
-//     fprintf(input, "    ");
+    for(int i = 0; i < nlin; i++){
+       info_plays->mat[i] = malloc(nCol* sizeof(char)); 
+    }
+}
 
-//     for(int cont = 0; cont  < nCol; cont++){
+//Libera a matriz da struct que recebe o tabuleiro
+void free_mat_hist(HISTORY *info_plays, int nlin, int nCol){
+
+    for(int i = 0; i < nlin; i++){
+       free(info_plays->mat[i]) ;
+    }
+
+    free(info_plays->mat);
+}
+
+//Update the file log.txt with the history of the board acoording with the plays until the end of the game
+void edit_history(HISTORY info_plays, int nlin, int nCol){
+
+    FILE* input = open_file_edit();
+
+    //Identifying the positions of the columns
+    fprintf(input, "    ");
+
+    for(int cont = 0; cont  < nCol; cont++){
         
-//         if(cont < 9){
-//             fprintf(input, " %d  ", cont+1);
-//         }
-//         else{
-//             fprintf(input, " %d ", cont+1);
-//         }
-//     }
-//     putc('\n', input);
+        if(cont < 9){
+            fprintf(input, " %d  ", cont+1);
+        }
+        else{
+            fprintf(input, " %d ", cont+1);
+        }
+    }
+    putc('\n', input);
 
 
-//     for(int i = 0; i < nlin; i++){
+    for(int i = 0; i < nlin; i++){
 
-//         //Identifying the positions of the lines
-//         if(i < 9){
-//             fprintf(input, "%d  ", i+1);
-//         }
-//         else{
-//             fprintf(input, "%d ", i+1);
-//         }
+        //Identifying the positions of the lines
+        if(i < 9){
+            fprintf(input, "%d  ", i+1);
+        }
+        else{
+            fprintf(input, "%d ", i+1);
+        }
 
 
-//         for(int j = 0; j < nCol; j++){
-//             putc('|', input);
-       
-//             fprintf(input, " %c ", info_plays.mat[i][j]);
-//         }
+        for(int j = 0; j < nCol; j++){
 
-//         putc('|', input);
-//         putc('\n', input);
-//     }
-//     putc('\n', input);
+            putc('|', input);
+            fprintf(input, " %c ", info_plays.mat[i][j]);//erro
+        }
 
-//     close_file(input);
-// }
+        putc('|', input);
+        putc('\n', input);
+    }
+    putc('\n', input);
+
+    close_file(input);
+}
 
 //Update the file log.txt with the template when the game it's over
 void editFinal_history(HISTORY info_plays, int nlin, int nCol){
@@ -177,7 +197,10 @@ void print_message_history(int valid, int lin){
     else if (!valid){
         fprintf(input, "- Coordenada inválida!\n- Por favor, digite novamente uma coordenada no formato \"x y\" que esteja dentro do intervalo de 1 a %d!!\n", lin);
     }
-
+    else if(valid == -1){
+      fprintf(input, "- Fim do arquivo..\n");
+    }
+    
     close_file(input);
 }
 

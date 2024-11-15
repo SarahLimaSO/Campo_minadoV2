@@ -6,7 +6,7 @@
 
 //Creating a new matrix board and initialize it with 'x'
 char** newMatrix(int nLin, int nCol){
-    char **mat = calloc(nLin,sizeof(char*));
+    char **mat = malloc(nLin*sizeof(char*));
 
     if(mat == NULL){
         printf("ERROR01! Insufficient memory!\n");
@@ -14,7 +14,7 @@ char** newMatrix(int nLin, int nCol){
     }
 
     for(int ind = 0; ind < nLin; ind++){
-        mat[ind] = (char*) calloc(nCol,sizeof(char));
+        mat[ind] = (char*) malloc(nCol*sizeof(char));
 
         if(mat == NULL){
         printf("ERROR02! Insufficient memory!\n");
@@ -26,6 +26,7 @@ char** newMatrix(int nLin, int nCol){
             mat[line][column] = 'x';
         }
     }
+
     return mat;
 }
 
