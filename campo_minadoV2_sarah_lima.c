@@ -179,6 +179,19 @@ void flood_fill(char **mat, int *mines, int nLin, int nCol,  int coordX, int coo
     flood_fill(mat, mines, nLin, nCol, coordX +1, coordY +1); 
 
 }
+//Prints a  message to the player according with the chosen coordinates
+void print_message(int valid, int lin){
+
+    if(valid == 1){
+        printf("Digite uma coordenada no formato \"x,y\" que esteja entre 1 e %d:\n", lin);
+    }
+    else if(valid == 2){
+        printf("Essa coordenada já foi escolhida..\nPor favor, digite outra coordenada  no formato \"x,y\" que esteja dentro do intervalo de 1 a %d!!\n", lin);
+    }
+    else if (!valid){
+        printf("\nCoordenada inválida!\nPor favor, digite novamente uma coordenada no formato \"x y\" que esteja dentro do intervalo de 1 a %d!!\n", lin);
+    }
+}
 
 int main() {
     int lin, col, coordX, coordY, plays, valid, nMines, previousX, previousY, firstPlay;
@@ -240,7 +253,7 @@ int main() {
         putchar('\n');
 
 
-       //Printing the matrix
+        //Printing the matrix
         printMatrix(mat, lin, col);
 
 
@@ -252,17 +265,8 @@ int main() {
         putchar('\n');
 
 
-        //If the coordinates are not valid the player is notified
-
-        if(valid == 1){
-            printf("Digite uma coordenada no formato \"x,y\" que esteja entre 1 e %d:\n", lin);
-        }
-        else if(valid == 2){
-            printf("Essa coordenada já foi escolhida..\nPor favor, digite outra coordenada  no formato \"x,y\" que esteja dentro do intervalo de 1 a %d!!\n", lin);
-        }
-        else if (!valid){
-            printf("\nCoordenada inválida!\nPor favor, digite novamente uma coordenada no formato \"x y\" que esteja dentro do intervalo de 1 a %d!!\n", lin);
-        }
+        //The player is notified with a message acoording with the chosen coordinates
+        print_message(valid, lin);
 
         //Read the coordinates and verify if it is valid
         valid = noExceptions(&plays, mat, repeat, valid, lin, col, &coordX, &coordY);
@@ -278,21 +282,24 @@ int main() {
             firstPlay = 0;
         }
 
+       if(valid != -1){ 
+        //Initialize the history info
+        info_plays.mat = mat;
+        info_plays.finalMat = mines;
+        info_plays.coordX = coordX;
+        info_plays.coordY = coordY;
+
+
+        //Updates the history of the plays 
+        edit_history(info_plays, lin, col);
+        }
 
         if(valid == 1){
-
-            //Initialize the history info
-            info_plays.mat = mat;
-            info_plays.finalMat = mines;
-            info_plays.coordX = coordX;
-            info_plays.coordY = coordY;
 
             //Subtracts minus 1 from the value of the coordinates
             coordX -= 1;
             coordY -= 1;
-
-            //Updates the history of the plays 
-            edit_history(info_plays, lin, col);
+            printf("entrou\n");
 
             qntdMines = minesProx(mines, lin, col, coordX, coordY);
             
