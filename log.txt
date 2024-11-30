@@ -1,9 +1,0 @@
----Game Start : 14/11/2024 
-time-> 23:34:47 
-
-
-- Digite uma coordenada no formato "x,y" que esteja entre 1 e 10:
-Chosen coordinate: 10,10
-
-
-
