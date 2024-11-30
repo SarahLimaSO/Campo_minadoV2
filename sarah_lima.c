@@ -5,7 +5,7 @@
 #include "log.h"
 
 //ATENÇÃO!!!!
-// Este arquivo deve ser compilado no seguinte formato: "gcc campo_minadoV2_sarah_lima.c matriz.c log.c"
+// Este arquivo deve ser compilado no seguinte formato: "gcc sarah_lima.c matriz.c log.c"
 
 
 //GAME'S FUNCTIONS

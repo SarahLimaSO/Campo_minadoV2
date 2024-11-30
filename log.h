@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 //HISTORY OF THE PLAYS
 
 typedef struct history{

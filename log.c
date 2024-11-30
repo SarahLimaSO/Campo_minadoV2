@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include "log.h"
-#include "matriz.h"
 
 //HISTORY OF THE PLAYS
 
@@ -28,29 +27,11 @@ FILE* open_file_read(){
     return input;
 }
 
+//Close the txt file
 void close_file(FILE *file){
     fclose(file);
 }
 
-//Aloca a matriz da struct que recebe o tabuleiro
-void aloca_mat_hist(HISTORY *info_plays, int nlin, int nCol){
-
-    info_plays->mat = (char**)malloc(nlin*sizeof(char*));
-
-    for(int i = 0; i < nlin; i++){
-       info_plays->mat[i] = malloc(nCol* sizeof(char)); 
-    }
-}
-
-//Libera a matriz da struct que recebe o tabuleiro
-void free_mat_hist(HISTORY *info_plays, int nlin, int nCol){
-
-    for(int i = 0; i < nlin; i++){
-       free(info_plays->mat[i]) ;
-    }
-
-    free(info_plays->mat);
-}
 
 //Update the file log.txt with the history of the board acoording with the plays until the end of the game
 void edit_history(HISTORY info_plays, int nlin, int nCol){
