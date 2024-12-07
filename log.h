@@ -41,3 +41,5 @@ void print_message_history(int valid, int lin);
 //Print the coordinate chosen by the player in the history
 void print_chosen_coord(HISTORY info_plays);
 
+//EndFile
+
