@@ -29,3 +29,4 @@ void printTemplate(int *mines, int nLin, int nCol);
 
 //Create the matrix that checks if the coordinate was already chosen, and return this matrix initializated with zero
 int *newRepeat(int nLin, int nCol);
+//EndFile
