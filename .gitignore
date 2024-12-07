@@ -1,0 +1,8 @@
+# Ignorar arquivos específicos
+.vscode/c_cpp_properties.json
+.vscode/launch.json
+.vscode/tasks.json
+
+# Ignorar pastas específicas
+pasta_ignorada/
+
