@@ -13,7 +13,7 @@ Versão 2 do jogo campo minado
 
 -Execute o seguinte comando dentro da pasta onde voce deseja instalar o projeto:
 ```bash
-git clone https://github.com/SarahLimaSO/Campo_minadoV2.git
+git clone https://github.com/SarahLimaSO/campo_minadoV2.git
 
 ```
 
