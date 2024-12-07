@@ -193,3 +193,4 @@ void print_chosen_coord(HISTORY info_plays){
 
     close_file(input);
 }
+//EndFile
