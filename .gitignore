@@ -4,5 +4,5 @@
 .vscode/tasks.json
 
 # Ignorar pastas específicas
-.vscode/
+#.vscode/
 
